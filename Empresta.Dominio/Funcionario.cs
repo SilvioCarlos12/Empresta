@@ -9,7 +9,7 @@ namespace Empresta.Dominio
         {
         }
         
-        public void Adicionar(Cliente cliente)
+        public void AdicionarCliente(Cliente cliente)
         {
             Clientes.Add(cliente);
         }
