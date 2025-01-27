@@ -6,3 +6,10 @@
 /src/Empresta.Api/bin/Debug/net8.0
 /src/Empresta.Api/obj
 /Empresta.Dominio/obj
+/Empresta.sln
+/Empresta.Aplicacao/obj
+/Empresta.Aplicacao.Teste/obj
+/Empresta.Applicacao/obj
+/Empresta.Dominio.Teste/obj
+/Empresta.Infraestrutura/obj
+/Empresta.Ioc/obj
