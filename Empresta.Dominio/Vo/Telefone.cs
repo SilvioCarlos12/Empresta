@@ -2,12 +2,23 @@
 {
     public record Telefone
     {
-        public string Dd {  get; private set; } = string.Empty;
-        public string Numero { get; private set; } = string.Empty;
-        public Telefone(string dd,string numero) { 
-          
+        public string Dd { get; set; } = string.Empty;
+        public string Numero { get; set; } = string.Empty;
+
+        public Telefone()
+        {
+            
+        }
+        public Telefone(string dd, string numero)
+        {
+
             Dd = dd;
             Numero = numero;
+        }
+
+        public string TelefoneCompleto()
+        {
+            return Dd + Numero;
         }
     }
 }

@@ -13,3 +13,12 @@
 /Empresta.Dominio.Teste/obj
 /Empresta.Infraestrutura/obj
 /Empresta.Ioc/obj
+*.user
+/.idea/.idea.Empresta/.idea
+/Empresta.Aplicacao/bin/Debug/net8.0
+/Empresta.Aplicacao.Teste/bin/Debug/net8.0
+/Empresta.Dominio/bin/Debug/net8.0
+/Empresta.Dominio.Teste/bin/Debug/net8.0
+/Empresta.Dominio.Teste/bin/Release/net8.0
+/Empresta.Infraestrutura/bin/Debug/net8.0
+/Empresta.Ioc/bin/Debug/net8.0
