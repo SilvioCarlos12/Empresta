@@ -5,3 +5,4 @@
 /.vs
 /src/Empresta.Api/bin/Debug/net8.0
 /src/Empresta.Api/obj
+/Empresta.Dominio/obj
