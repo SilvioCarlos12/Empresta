@@ -5,7 +5,6 @@ namespace Empresta.Dominio
     public class Funcionario : Pessoa
     {
         public List<Cliente> Clientes { get; private set; } = new List<Cliente>();
-        public Guid FuncionarioId { get; set; } = Guid.NewGuid();
         private Funcionario(string nome, Telefone telefone, Endereco endereco) : base(nome, telefone, endereco)
         {
         }

@@ -4,6 +4,7 @@ namespace Empresta.Dominio
 {
     public abstract class Pessoa
     {
+        public Guid Id { get; set; } = Guid.NewGuid();
         protected Pessoa(string nome, Telefone telefone, Endereco endereco)
         {
             Nome = nome;
