@@ -13,7 +13,6 @@ public static class ClienteMapper
             {
                 cm.AutoMap();
                 cm.SetIgnoreExtraElements(true);
-                cm.MapMember(p => p.Id).SetElementName("ClienteId");
             });
         }
     }

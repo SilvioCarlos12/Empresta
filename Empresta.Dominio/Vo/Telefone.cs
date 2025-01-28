@@ -16,6 +16,14 @@
             Numero = numero;
         }
 
+        public static bool ValidarDd(string dd)
+        {
+            return dd.Length == 2 && int.TryParse(dd, out var resultado);
+        }
+        public static bool ValidarNumero(string numero)
+        {
+            return numero.Length == 9 && int.TryParse(numero, out var resultado);
+        }
         public string TelefoneCompleto()
         {
             return Dd + Numero;

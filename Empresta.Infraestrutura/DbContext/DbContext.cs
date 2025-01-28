@@ -45,7 +45,7 @@ namespace Empresta.Infraestrutura.DbContext
         public async Task<T> UpdateDocument<T>(T payload, CancellationToken cancellationToken)
         {
             var filter = Builders<T>.Filter.Eq("_id",
-                ObjectId.Parse(payload?.GetType()?.GetProperty("Id")?.GetValue(payload)?.ToString()));
+                Guid.Parse(payload?.GetType()?.GetProperty("Id")?.GetValue(payload)?.ToString()));
 
             var updateResult = await GetCollection<T>().ReplaceOneAsync(filter, payload, new ReplaceOptions(), cancellationToken);
 
