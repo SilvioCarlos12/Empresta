@@ -43,18 +43,15 @@ public class FuncionarioRepositorio:IFuncionarioRepositorio
     public async Task<Funcionario?> GetById(Guid id, CancellationToken cancellationToken)
     {
         return await _dbContext.GetCollection<Funcionario>()
-            .Find(x => x.FuncionarioId == id)
+            .Find(x => x.Id == id)
             .FirstOrDefaultAsync(cancellationToken);
     }
 
     public async Task Update(Funcionario entity,CancellationToken cancellationToken)
     {
-        var filter = Builders<Funcionario>.Filter.Eq("FuncionarioId", entity.FuncionarioId);
+        var funcionarioFiltrado = await GetById(entity.Id, cancellationToken);
 
-
-        var funcionarioFiltrado = await _dbContext.GetCollection<Funcionario>().Find(filter).FirstOrDefaultAsync();
-
-        entity.FuncionarioId = funcionarioFiltrado.FuncionarioId;
+        entity.Id = funcionarioFiltrado!.Id;
 
         await _dbContext.UpdateDocument(entity, cancellationToken);
     }
