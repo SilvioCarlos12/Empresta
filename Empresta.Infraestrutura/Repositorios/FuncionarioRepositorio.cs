@@ -16,19 +16,21 @@ public class FuncionarioRepositorio:IFuncionarioRepositorio
         _dbContext = dbContext;
     }
 
-    public Task Add(Funcionario entity, CancellationToken cancellationToken)
+    public async Task Add(Funcionario entity, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+         await _dbContext.InsertDocument(entity, cancellationToken);
     }
 
-    public Task Delete(Guid id, CancellationToken cancellationToken)
+    public async Task Delete(Guid id, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var funcionario = await GetById(id, cancellationToken);
+        await _dbContext.DeleteDocument(funcionario, cancellationToken);
+
     }
 
-    public Task<IEnumerable<Funcionario>> GetAll(CancellationToken cancellationToken)
+    public async Task<IEnumerable<Funcionario>> GetAll(CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return await _dbContext.GetCollection<Funcionario>().AsQueryable().ToListAsync(cancellationToken);
     }
 
     public async Task<IEnumerable<Funcionario>> GetByFilter(Expression<Func<Funcionario, bool>> filter, CancellationToken cancellationToken)
@@ -38,13 +40,22 @@ public class FuncionarioRepositorio:IFuncionarioRepositorio
         return await _dbContext.GetCollection<Funcionario>().Find(filtroBuild.Where(filter)).ToListAsync(cancellationToken);
     }
 
-    public Task<Funcionario?> GetById(Guid id, CancellationToken cancellationToken)
+    public async Task<Funcionario?> GetById(Guid id, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return await _dbContext.GetCollection<Funcionario>()
+            .Find(x => x.FuncionarioId == id)
+            .FirstOrDefaultAsync(cancellationToken);
     }
 
-    public Task Update(Funcionario entity)
+    public async Task Update(Funcionario entity,CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var filter = Builders<Funcionario>.Filter.Eq("FuncionarioId", entity.FuncionarioId);
+
+
+        var funcionarioFiltrado = await _dbContext.GetCollection<Funcionario>().Find(filter).FirstOrDefaultAsync();
+
+        entity.FuncionarioId = funcionarioFiltrado.FuncionarioId;
+
+        await _dbContext.UpdateDocument(entity, cancellationToken);
     }
 }
