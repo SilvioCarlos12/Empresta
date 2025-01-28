@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Empresta.Aplicacao\Empresta.Aplicacao.csproj" />
+    <ProjectReference Include="..\..\Empresta.Ioc\Empresta.Ioc.csproj" />
   </ItemGroup>
 
 </Project>

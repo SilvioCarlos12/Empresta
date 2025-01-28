@@ -9,7 +9,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Empresta.Aplicacao\Empresta.Aplicacao.csproj" />
     <ProjectReference Include="..\Empresta.Infraestrutura\Empresta.Infraestrutura.csproj" />
-    <ProjectReference Include="..\src\Empresta.Api\Empresta.Api.csproj" />
   </ItemGroup>
 
 </Project>
