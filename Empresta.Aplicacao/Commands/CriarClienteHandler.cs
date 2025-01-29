@@ -33,11 +33,8 @@ namespace Empresta.Aplicacao.Commands
                 }
                 
 
-                var cliente = await CadastrarCliente(request, cancellationToken);
+               await CadastrarCliente(request,funcionario,cancellationToken);
 
-                funcionario.AdicionarCliente(cliente);
-
-                await _funcionarioRepositorio.Update(funcionario, cancellationToken);
 
                 return CriarClienteResponse.Sucesso();
             }
@@ -48,7 +45,7 @@ namespace Empresta.Aplicacao.Commands
             }
         }
 
-        private async Task<Cliente> CadastrarCliente(CriarClienteCommand request, CancellationToken cancellationToken)
+        private async Task CadastrarCliente(CriarClienteCommand request,Funcionario funcionario ,CancellationToken cancellationToken)
         {
             Telefone telefone = request.Telefone.ToVo();
 
@@ -57,15 +54,36 @@ namespace Empresta.Aplicacao.Commands
 
             if (clienteExiste.Any())
             {
-                return clienteExiste.Single();
+                await AdicionarClienteExistenteNoFuncionario(funcionario, clienteExiste, cancellationToken);
+
+                return;
             }
 
             var cliente = Cliente.Criar(request.Nome, telefone, request.Endereco.ToVo());
 
             await _clienteRepositorio.Add(cliente, cancellationToken);
 
-            return cliente;
+            funcionario.AdicionarCliente(cliente);
+            
+            await _funcionarioRepositorio.Update(funcionario, cancellationToken);
+        }
 
+        private async Task AdicionarClienteExistenteNoFuncionario(Funcionario funcionario, IEnumerable<Cliente> clienteExiste, CancellationToken cancellationToken)
+        {
+            var clienteExisteNoFuncionario = await _funcionarioRepositorio.GetByFilter(x => x.Clientes
+                                                                                              .Where(x => clienteExiste
+                                                                                                            .Single()
+                                                                                                            .Id.Equals(x.Id))
+                                                                                              .Any(), cancellationToken);
+
+            if (clienteExisteNoFuncionario.Count() == 1)
+            {
+                return;
+            }
+
+            funcionario.AdicionarCliente(clienteExiste.Single());
+
+            await _funcionarioRepositorio.Update(funcionario, cancellationToken);
         }
     }
 
