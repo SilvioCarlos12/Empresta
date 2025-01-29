@@ -1,9 +1,22 @@
+using Empresta.Api.Api;
+using Empresta.Aplicacao.Commands;
+using Empresta.Ioc;
+using Empresta.Ioc.Validation;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddMapeamento();
+builder.Services.AddDbContext();
+builder.Services.AddRepositorio();
+builder.Services.AddMediator();
+builder.Services.AddValidation();
+var config = builder.Configuration.GetSection("MongoDB");
+builder.Services.AddConfigMongo(config["ConnectionString"]!, config["Database"]!);
+
 
 var app = builder.Build();
 
@@ -15,30 +28,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
-
+app.MapRotas();
+app.UseMiddleware<ValidationMiddleware>();
 app.Run();
 
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

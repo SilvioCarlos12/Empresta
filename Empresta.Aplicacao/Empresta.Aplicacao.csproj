@@ -7,8 +7,41 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.11.0" />
+    <PackageReference Include="MediatR" Version="12.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Empresta.Dominio\Empresta.Dominio.csproj" />
     <ProjectReference Include="..\Empresta.Infraestrutura\Empresta.Infraestrutura.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="MensagensErro\CodigosErros.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CodigosErros.resx</DependentUpon>
+    </Compile>
+    <Compile Update="MensagensErro\MensagensErro.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MensagensErro.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="MensagensErro\CodigosErros.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CodigosErros.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MensagensErro\MensagensErro.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MensagensErro.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
