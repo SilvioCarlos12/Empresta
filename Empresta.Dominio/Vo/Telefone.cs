@@ -18,7 +18,7 @@
 
         public static bool ValidarDd(string dd)
         {
-            return dd.Length == 2 && int.TryParse(dd, out var resultado);
+            return dd.Length == 3 && int.TryParse(dd, out var resultado);
         }
         public static bool ValidarNumero(string numero)
         {

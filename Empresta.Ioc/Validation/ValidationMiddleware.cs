@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using Empresta.Aplicacao.Dto;
+using FluentValidation;
 using Microsoft.AspNetCore.Http;
 
 namespace Empresta.Ioc.Validation
@@ -17,7 +18,7 @@ namespace Empresta.Ioc.Validation
             catch (ValidationException ex)
             {
 
-                var resultado = Results.ValidationProblem(detail: ex.Message, errors: ex.Errors.ToDictionary(k => k.PropertyName, v => new[] { v.ErrorMessage }), statusCode: 400);
+                var resultado = Results.BadRequest(ex.Errors.Select(x => new ErroDto(x.ErrorCode, x.ErrorMessage)));
 
                 await resultado.ExecuteAsync(context);
             }
