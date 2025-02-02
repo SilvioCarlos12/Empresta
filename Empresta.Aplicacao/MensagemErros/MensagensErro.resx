@@ -117,13 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="NaoEncontradoFuncionario" xml:space="preserve">
-    <value>01</value>
+  <data name="NaoEncontradoOFuncionario" xml:space="preserve">
+    <value>Não foi encontrado o funcionário  de Id: {0}</value>
   </data>
   <data name="NumeroTelefoneInvalido" xml:space="preserve">
-    <value>02</value>
+    <value>O número do telefone está inválido.</value>
   </data>
   <data name="DdInvalido" xml:space="preserve">
-    <value>03</value>
+    <value>O dd está inválido</value>
+  </data>
+  <data name="NomeEObrigatorio" xml:space="preserve">
+    <value>O nome é obrigatório.</value>
+  </data>
+  <data name="CepEObrigatorio" xml:space="preserve">
+    <value>O cep é obrigatório</value>
+  </data>
+  <data name="RuaEObrigatorio" xml:space="preserve">
+    <value>O rua é obrigatório</value>
+  </data>
+  <data name="BairroEObrigatorio" xml:space="preserve">
+    <value>O bairro é obrigatório.</value>
+  </data>
+  <data name="CidadeEObrigatorio" xml:space="preserve">
+    <value>A cidade é obrigatório.</value>
+  </data>
+  <data name="EstadoEObrigatorio" xml:space="preserve">
+    <value>O estado é obrigatorio.</value>
+  </data>
+  <data name="NumeroEObrigatorio" xml:space="preserve">
+    <value>O numero é obrigatório.</value>
+  </data>
+  <data name="ClienteJaCadastradoParaEsseFuncionario" xml:space="preserve">
+    <value>O cliente já foi cadastrado para esse funcionário.</value>
   </data>
 </root>

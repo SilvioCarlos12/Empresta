@@ -21,12 +21,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="MensagensErro\CodigosErros.Designer.cs">
+    <Compile Update="MensagemErros\CodigosErros.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>CodigosErros.resx</DependentUpon>
     </Compile>
-    <Compile Update="MensagensErro\MensagensErro.Designer.cs">
+    <Compile Update="MensagemErros\MensagensErro.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>MensagensErro.resx</DependentUpon>
@@ -34,11 +34,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="MensagensErro\CodigosErros.resx">
+    <EmbeddedResource Update="MensagemErros\CodigosErros.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CodigosErros.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="MensagensErro\MensagensErro.resx">
+    <EmbeddedResource Update="MensagemErros\MensagensErro.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MensagensErro.Designer.cs</LastGenOutput>
     </EmbeddedResource>

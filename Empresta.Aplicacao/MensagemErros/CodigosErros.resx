@@ -117,13 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="NaoEncontradoOFuncionario" xml:space="preserve">
-    <value>Não foi encontrado o funcionário  de Id: {0}</value>
+  <data name="NaoEncontradoFuncionario" xml:space="preserve">
+    <value>01</value>
   </data>
   <data name="NumeroTelefoneInvalido" xml:space="preserve">
-    <value>O número do telefone está inválido.</value>
+    <value>02</value>
   </data>
   <data name="DdInvalido" xml:space="preserve">
-    <value>O dd está inválido</value>
+    <value>03</value>
+  </data>
+  <data name="DdEObrigatorio" xml:space="preserve">
+    <value>04</value>
+  </data>
+  <data name="NumeroEObrigatorio" xml:space="preserve">
+    <value>05</value>
+  </data>
+  <data name="NomeEObrigatorio" xml:space="preserve">
+    <value>06</value>
+  </data>
+  <data name="RuaEObrigatorio" xml:space="preserve">
+    <value>07</value>
+  </data>
+  <data name="BairroEObrigatorio" xml:space="preserve">
+    <value>08</value>
+  </data>
+  <data name="CidadeEObrigatorio" xml:space="preserve">
+    <value>09</value>
+  </data>
+  <data name="EstadoEObrigatorio" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="CepEObrigatorio" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="ClienteJaCadastradoParaEsseFuncionario" xml:space="preserve">
+    <value>12</value>
   </data>
 </root>

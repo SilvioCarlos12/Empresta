@@ -1,6 +1,7 @@
 ﻿using Empresta.Aplicacao.Dto;
 using Empresta.Aplicacao.Mapper;
-using Empresta.Aplicacao.MensagensErro;
+using Empresta.Aplicacao.MensagemErros;
+using Empresta.Aplicacao.Validacao;
 using Empresta.Dominio;
 using Empresta.Dominio.Vo;
 using Empresta.Infraestrutura.Repositorios.Interfaces;
@@ -31,12 +32,8 @@ namespace Empresta.Aplicacao.Commands
                 {
                     return CriarClienteResponse.NaoEncontrado();
                 }
-                
 
-               await CadastrarCliente(request,funcionario,cancellationToken);
-
-
-                return CriarClienteResponse.Sucesso();
+                return await CadastrarCliente(request, funcionario, cancellationToken); ;
             }
             catch (Exception ex)
             {
@@ -45,7 +42,7 @@ namespace Empresta.Aplicacao.Commands
             }
         }
 
-        private async Task CadastrarCliente(CriarClienteCommand request,Funcionario funcionario ,CancellationToken cancellationToken)
+        private async Task<CriarClienteResponse> CadastrarCliente(CriarClienteCommand request,Funcionario funcionario ,CancellationToken cancellationToken)
         {
             Telefone telefone = request.Telefone.ToVo();
 
@@ -54,9 +51,8 @@ namespace Empresta.Aplicacao.Commands
 
             if (clienteExiste.Any())
             {
-                await AdicionarClienteExistenteNoFuncionario(funcionario, clienteExiste, cancellationToken);
 
-                return;
+                return await AdicionarClienteExistenteNoFuncionario(funcionario, clienteExiste, cancellationToken); ;
             }
 
             var cliente = Cliente.Criar(request.Nome, telefone, request.Endereco.ToVo());
@@ -66,24 +62,30 @@ namespace Empresta.Aplicacao.Commands
             funcionario.AdicionarCliente(cliente);
             
             await _funcionarioRepositorio.Update(funcionario, cancellationToken);
+
+            return CriarClienteResponse.Sucesso();
         }
 
-        private async Task AdicionarClienteExistenteNoFuncionario(Funcionario funcionario, IEnumerable<Cliente> clienteExiste, CancellationToken cancellationToken)
+        private async Task<CriarClienteResponse> AdicionarClienteExistenteNoFuncionario(Funcionario funcionario, IEnumerable<Cliente> clienteExiste, CancellationToken cancellationToken)
         {
             var clienteExisteNoFuncionario = await _funcionarioRepositorio.GetByFilter(x => x.Clientes
-                                                                                              .Where(x => clienteExiste
-                                                                                                            .Single()
-                                                                                                            .Id.Equals(x.Id))
-                                                                                              .Any(), cancellationToken);
+                .Where(x => clienteExiste
+                    .Single()
+                    .Id.Equals(x.Id))
+                .Any(), cancellationToken);
 
             if (clienteExisteNoFuncionario.Count() == 1)
             {
-                return;
+                return CriarClienteResponse.Invalido(
+                    new ErroDto(CodigosErros.ClienteJaCadastradoParaEsseFuncionario, 
+                    MensagensErro.ClienteJaCadastradoParaEsseFuncionario));
             }
 
             funcionario.AdicionarCliente(clienteExiste.Single());
 
             await _funcionarioRepositorio.Update(funcionario, cancellationToken);
+
+            return CriarClienteResponse.Sucesso();
         }
     }
 
@@ -109,16 +111,16 @@ namespace Empresta.Aplicacao.Commands
     {
         public CriarClienteValidation()
         {
-            RuleFor(x => x.Nome).NotEmpty();
+            RuleFor(x => x.Nome)
+                .NotEmpty()
+                .WithErrorCode(CodigosErros.NomeEObrigatorio)
+                .WithMessage(MensagensErro.NomeEObrigatorio);
 
-            RuleFor(x => x.Telefone.NumeroTelefone)
-                .Must(Telefone.ValidarNumero)
-                .WithErrorCode(CodigosErros.NumeroTelefoneInvalido);
+            RuleFor(x => x.Endereco)
+                .SetValidator(EnderecoDtoValidar.ObterValidacao());
 
-            RuleFor(x => x.Telefone.Dd)
-             .Must(Telefone.ValidarDd)
-             .WithErrorCode(CodigosErros.DdInvalido);
-
+            RuleFor(x => x.Telefone)
+                .SetValidator(TelefoneDtoValidar.ObterValidacao());
         }
     }
 }
