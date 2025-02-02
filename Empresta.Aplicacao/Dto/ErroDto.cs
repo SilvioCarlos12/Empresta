@@ -1,4 +1,4 @@
 ﻿namespace Empresta.Aplicacao.Dto
 {
-    public record ErroDto(string Mensagem, string CodigoErro);
+    public record ErroDto(string CodigoErro,string Mensagem);
 }

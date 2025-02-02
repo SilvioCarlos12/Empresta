@@ -4,6 +4,6 @@
     {
         private const string _funcionario = "funcionario";
 
-        public static WebApplication MapRotas(this WebApplication app) => app.MapCliente(_funcionario);
+        public static WebApplication MapRotas(this WebApplication app) => app.MapFuncionario(_funcionario);
     }
 }

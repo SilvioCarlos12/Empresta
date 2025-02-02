@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Empresta.Aplicacao.MensagensErro {
+namespace Empresta.Aplicacao.MensagemErros {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Empresta.Aplicacao.MensagensErro {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Empresta.Aplicacao.MensagensErro.CodigosErros", typeof(CodigosErros).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Empresta.Aplicacao.MensagemErros.CodigosErros", typeof(CodigosErros).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,65 @@ namespace Empresta.Aplicacao.MensagensErro {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a 08.
+        /// </summary>
+        internal static string BairroEObrigatorio {
+            get {
+                return ResourceManager.GetString("BairroEObrigatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a 11.
+        /// </summary>
+        internal static string CepEObrigatorio {
+            get {
+                return ResourceManager.GetString("CepEObrigatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a 09.
+        /// </summary>
+        internal static string CidadeEObrigatorio {
+            get {
+                return ResourceManager.GetString("CidadeEObrigatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a 12.
+        /// </summary>
+        internal static string ClienteJaCadastradoParaEsseFuncionario {
+            get {
+                return ResourceManager.GetString("ClienteJaCadastradoParaEsseFuncionario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a 04.
+        /// </summary>
+        internal static string DdEObrigatorio {
+            get {
+                return ResourceManager.GetString("DdEObrigatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a 03.
         /// </summary>
         internal static string DdInvalido {
             get {
                 return ResourceManager.GetString("DdInvalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a 10.
+        /// </summary>
+        internal static string EstadoEObrigatorio {
+            get {
+                return ResourceManager.GetString("EstadoEObrigatorio", resourceCulture);
             }
         }
         
@@ -79,11 +133,38 @@ namespace Empresta.Aplicacao.MensagensErro {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a 06.
+        /// </summary>
+        internal static string NomeEObrigatorio {
+            get {
+                return ResourceManager.GetString("NomeEObrigatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a 05.
+        /// </summary>
+        internal static string NumeroEObrigatorio {
+            get {
+                return ResourceManager.GetString("NumeroEObrigatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a 02.
         /// </summary>
         internal static string NumeroTelefoneInvalido {
             get {
                 return ResourceManager.GetString("NumeroTelefoneInvalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a 07.
+        /// </summary>
+        internal static string RuaEObrigatorio {
+            get {
+                return ResourceManager.GetString("RuaEObrigatorio", resourceCulture);
             }
         }
     }

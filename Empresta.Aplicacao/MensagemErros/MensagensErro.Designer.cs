@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Empresta.Aplicacao.MensagensErro {
+namespace Empresta.Aplicacao.MensagemErros {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Empresta.Aplicacao.MensagensErro {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Empresta.Aplicacao.MensagensErro.MensagensErro", typeof(MensagensErro).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Empresta.Aplicacao.MensagemErros.MensagensErro", typeof(MensagensErro).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,56 @@ namespace Empresta.Aplicacao.MensagensErro {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O bairro é obrigatório..
+        /// </summary>
+        internal static string BairroEObrigatorio {
+            get {
+                return ResourceManager.GetString("BairroEObrigatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O cep é obrigatório.
+        /// </summary>
+        internal static string CepEObrigatorio {
+            get {
+                return ResourceManager.GetString("CepEObrigatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a A cidade é obrigatório..
+        /// </summary>
+        internal static string CidadeEObrigatorio {
+            get {
+                return ResourceManager.GetString("CidadeEObrigatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O cliente já foi cadastrado para esse funcionário..
+        /// </summary>
+        internal static string ClienteJaCadastradoParaEsseFuncionario {
+            get {
+                return ResourceManager.GetString("ClienteJaCadastradoParaEsseFuncionario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a O dd está inválido.
         /// </summary>
         internal static string DdInvalido {
             get {
                 return ResourceManager.GetString("DdInvalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O estado é obrigatorio..
+        /// </summary>
+        internal static string EstadoEObrigatorio {
+            get {
+                return ResourceManager.GetString("EstadoEObrigatorio", resourceCulture);
             }
         }
         
@@ -79,11 +124,38 @@ namespace Empresta.Aplicacao.MensagensErro {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O nome é obrigatório..
+        /// </summary>
+        internal static string NomeEObrigatorio {
+            get {
+                return ResourceManager.GetString("NomeEObrigatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O numero é obrigatório..
+        /// </summary>
+        internal static string NumeroEObrigatorio {
+            get {
+                return ResourceManager.GetString("NumeroEObrigatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a O número do telefone está inválido..
         /// </summary>
         internal static string NumeroTelefoneInvalido {
             get {
                 return ResourceManager.GetString("NumeroTelefoneInvalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O rua é obrigatório.
+        /// </summary>
+        internal static string RuaEObrigatorio {
+            get {
+                return ResourceManager.GetString("RuaEObrigatorio", resourceCulture);
             }
         }
     }

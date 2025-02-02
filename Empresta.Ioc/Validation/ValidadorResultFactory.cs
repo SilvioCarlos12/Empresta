@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Empresta.Aplicacao.Dto;
+using Microsoft.AspNetCore.Http;
 using SharpGrip.FluentValidation.AutoValidation.Endpoints.Results;
-using SharpGrip.FluentValidation.AutoValidation.Shared.Extensions;
 
 namespace Empresta.Ioc.Validation
 {
@@ -8,8 +8,8 @@ namespace Empresta.Ioc.Validation
     {
         public IResult CreateResult(EndpointFilterInvocationContext context, FluentValidation.Results.ValidationResult validationResult)
         {
-            var validationProblemErrors = validationResult.ToValidationProblemErrors();
-            return Results.ValidationProblem(validationProblemErrors, "Erro de validação");
+            var validationProblemErrors = validationResult.Errors.Select(x=>new ErroDto(x.ErrorCode,x.ErrorMessage));
+            return Results.BadRequest(validationProblemErrors);
         }
     }
 }

@@ -5,16 +5,14 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace Empresta.Api.Api
 {
-    public static class ClienteRouteMappingExtensions
+    public static class FuncionarioRouteMappingExtensions
     {
-        private const string _cliente = "cliente";
-
-        public static WebApplication MapCliente(this WebApplication app, string rotaRaiz) =>
+        public static WebApplication MapFuncionario(this WebApplication app, string rotaRaiz) =>
             app.MapCriarCliente(rotaRaiz);
 
         private static WebApplication MapCriarCliente(this WebApplication app, string rotaRaiz)
         {
-            app.MapPost($"{rotaRaiz}/{{id}}/{_cliente}", async ([FromServices] IMediator mediator,Guid id, 
+            app.MapPost($"{rotaRaiz}/{{id}}/cliente", async ([FromServices] IMediator mediator,Guid id, 
                 CriarClienteCommand criarClienteCommand,CancellationToken cancellationToken) =>
             {
                 criarClienteCommand.Id = id;
@@ -32,7 +30,7 @@ namespace Empresta.Api.Api
                 .Produces(404,typeof(CriarClienteNaoEncontrado))
                 .Produces(500, typeof(CriarClienteErro))
                 .WithMetadata(new SwaggerOperationAttribute("Criar um cliente", "Adicionar um novo cliente"))
-                .WithTags("Cliente"); ;
+                .WithTags("Funcionario");
 
             return app;
         }
