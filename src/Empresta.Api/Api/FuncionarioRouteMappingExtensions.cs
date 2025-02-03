@@ -1,4 +1,6 @@
 ﻿using Empresta.Aplicacao.Commands;
+using Empresta.Aplicacao.Queries;
+using Empresta.Ioc.Extensao;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -8,7 +10,8 @@ namespace Empresta.Api.Api
     public static class FuncionarioRouteMappingExtensions
     {
         public static WebApplication MapFuncionario(this WebApplication app, string rotaRaiz) =>
-            app.MapCriarCliente(rotaRaiz);
+            app.MapCriarCliente(rotaRaiz)
+               .MapObterCliente(rotaRaiz);
 
         private static WebApplication MapCriarCliente(this WebApplication app, string rotaRaiz)
         {
@@ -22,7 +25,7 @@ namespace Empresta.Api.Api
                     CriarClienteSucesso sucesso => Results.Created("/cliente/{id}", ""),
                     CriarClienteInvalido invalido => Results.BadRequest(invalido.ErroDtos),
                     CriarClienteNaoEncontrado naoEncontrado => Results.NotFound(),
-                    CriarClienteErro erro => Results.Problem(erro.ErroDtos.ToString()),
+                    CriarClienteErro erro => erro.ErroDto.ToResultPromblem(),
                     _ => throw new ArgumentOutOfRangeException(nameof(response))
                 };
             }).Produces(201, typeof(CriarClienteSucesso))
@@ -34,5 +37,28 @@ namespace Empresta.Api.Api
 
             return app;
         }
+
+
+        private static WebApplication MapObterCliente(this WebApplication app, string rotaRaiz)
+        {
+            app.MapGet($"{rotaRaiz}/{{id}}/cliente", async ([FromServices] IMediator mediator, Guid id, CancellationToken cancellationToken) =>
+            {
+                var response = await mediator.Send(new BuscarClientesPorFuncionarioIdQuery(id), cancellationToken);
+                return response switch
+                {
+                    BuscarClientesPorFuncionarioIdSucesso sucesso => Results.Ok(sucesso),
+                    BuscarClientesPorFuncionarioIdNaoEncontrado naoEncontrado => Results.NotFound(),
+                    BuscarClientesPorFuncionarioIdErro erro => erro.ErroDtos.ToResultPromblem(),
+                    _ => throw new ArgumentOutOfRangeException(nameof(response))
+                };
+            }).Produces(200, typeof(BuscarClientesPorFuncionarioIdSucesso))
+                .Produces(404, typeof(BuscarClientesPorFuncionarioIdNaoEncontrado))
+                .Produces(500,typeof(BuscarClientesPorFuncionarioIdErro))
+                .WithMetadata(new SwaggerOperationAttribute("Obtem clientes de um funcionario", "Obter clientes de um funcionario"))
+                .WithTags("Funcionario");
+
+            return app;
+        }
+
     }
 }

@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Queries\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="MensagemErros\CodigosErros.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
