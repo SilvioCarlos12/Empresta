@@ -9,5 +9,10 @@ namespace Empresta.Aplicacao.Mapper
         {
             return new Telefone(telefone.Dd, telefone.NumeroTelefone);
         }
+
+        public static TelefoneDto ToDto(this Telefone telefone)
+        {
+            return new TelefoneDto(telefone.Dd, telefone.Numero);
+        }
     }
 }

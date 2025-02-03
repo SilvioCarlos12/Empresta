@@ -15,5 +15,10 @@ namespace Empresta.Aplicacao.Mapper
                 enderecoDto.Estado, 
                 enderecoDto.Numero);
         }
+
+        public static EnderecoDto ToDto(this Endereco Vo)
+        {
+            return new EnderecoDto(Vo.Rua,Vo.Bairro,Vo.Cidade,Vo.Cep,Vo.Estado,Vo.Numero);
+        }
     }
 }
