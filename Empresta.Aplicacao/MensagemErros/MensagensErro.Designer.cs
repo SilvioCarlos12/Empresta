@@ -106,6 +106,15 @@ namespace Empresta.Aplicacao.MensagemErros {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Tente mais tarde, o servidor está indisponivel.
+        /// </summary>
+        internal static string ErroSistematico {
+            get {
+                return ResourceManager.GetString("ErroSistematico", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a O estado é obrigatorio..
         /// </summary>
         internal static string EstadoEObrigatorio {

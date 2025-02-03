@@ -150,4 +150,7 @@
   <data name="ClienteJaCadastradoParaEsseFuncionario" xml:space="preserve">
     <value>O cliente já foi cadastrado para esse funcionário.</value>
   </data>
+  <data name="ErroSistematico" xml:space="preserve">
+    <value>Tente mais tarde, o servidor está indisponivel</value>
+  </data>
 </root>

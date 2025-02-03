@@ -115,6 +115,15 @@ namespace Empresta.Aplicacao.MensagemErros {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a 12.
+        /// </summary>
+        internal static string ErroSistematico {
+            get {
+                return ResourceManager.GetString("ErroSistematico", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a 10.
         /// </summary>
         internal static string EstadoEObrigatorio {
