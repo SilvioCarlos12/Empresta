@@ -97,13 +97,13 @@ namespace Empresta.Aplicacao.Commands
 
     public record CriarClienteSucesso() : CriarClienteResponse;
     public record CriarClienteInvalido(params ErroDto[] ErroDtos) : CriarClienteResponse;
-    public record CriarClienteErro(params ErroDto[] ErroDtos) : CriarClienteResponse;
+    public record CriarClienteErro(ErroDto ErroDto) : CriarClienteResponse;
     public record CriarClienteNaoEncontrado() : CriarClienteResponse;
     public record CriarClienteResponse
     {
         public static CriarClienteResponse Sucesso() => new CriarClienteSucesso();
         public static CriarClienteResponse Invalido(params ErroDto[] erroDtos) => new CriarClienteInvalido(erroDtos);
-        public static CriarClienteResponse Error(params ErroDto[] erroDtos) => new CriarClienteErro(erroDtos);
+        public static CriarClienteResponse Error( ErroDto erroDto) => new CriarClienteErro(erroDto);
         public static CriarClienteResponse NaoEncontrado() => new CriarClienteNaoEncontrado();
     }
 
