@@ -74,7 +74,7 @@ namespace Empresta.Aplicacao.Commands
                     .Id.Equals(x.Id))
                 .Any(), cancellationToken);
 
-            if (clienteExisteNoFuncionario.Count() == 1)
+            if (clienteExisteNoFuncionario.Any())
             {
                 return CriarClienteResponse.Invalido(
                     new ErroDto(CodigosErros.ClienteJaCadastradoParaEsseFuncionario, 
