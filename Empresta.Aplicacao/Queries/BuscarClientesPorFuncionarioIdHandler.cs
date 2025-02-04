@@ -43,7 +43,7 @@ namespace Empresta.Aplicacao.Queries
     public record BuscarClientesPorFuncionarioIdQuery(Guid Id) : IRequest<BuscarClientesPorFuncionarioIdResponse>;
     public record BuscarClientesPorFuncionarioIdSucesso(IEnumerable<ClienteDto> Clientes) : BuscarClientesPorFuncionarioIdResponse;
     public record BuscarClientesPorFuncionarioIdNaoEncontrado() : BuscarClientesPorFuncionarioIdResponse;
-    public record BuscarClientesPorFuncionarioIdErro( ErroDto ErroDtos) : BuscarClientesPorFuncionarioIdResponse;
+    public record BuscarClientesPorFuncionarioIdErro(ErroDto ErroDtos) : BuscarClientesPorFuncionarioIdResponse;
     public record BuscarClientesPorFuncionarioIdResponse
     {
         public static BuscarClientesPorFuncionarioIdResponse Sucesso(IEnumerable<ClienteDto> clientes) => new BuscarClientesPorFuncionarioIdSucesso(clientes);

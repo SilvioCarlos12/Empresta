@@ -15,8 +15,8 @@ namespace Empresta.Api.Api
 
         private static WebApplication MapCriarCliente(this WebApplication app, string rotaRaiz)
         {
-            app.MapPost($"{rotaRaiz}/{{id}}/cliente", async ([FromServices] IMediator mediator,Guid id, 
-                CriarClienteCommand criarClienteCommand,CancellationToken cancellationToken) =>
+            app.MapPost($"{rotaRaiz}/{{id}}/cliente", async ([FromServices] IMediator mediator, Guid id,
+                CriarClienteCommand criarClienteCommand, CancellationToken cancellationToken) =>
             {
                 criarClienteCommand.Id = id;
                 var response = await mediator.Send(criarClienteCommand, cancellationToken);
@@ -30,7 +30,7 @@ namespace Empresta.Api.Api
                 };
             }).Produces(201, typeof(CriarClienteSucesso))
                 .Produces(400, typeof(CriarClienteInvalido))
-                .Produces(404,typeof(CriarClienteNaoEncontrado))
+                .Produces(404, typeof(CriarClienteNaoEncontrado))
                 .Produces(500, typeof(CriarClienteErro))
                 .WithMetadata(new SwaggerOperationAttribute("Criar um cliente", "Adicionar um novo cliente"))
                 .WithTags("Funcionario");
@@ -53,7 +53,7 @@ namespace Empresta.Api.Api
                 };
             }).Produces(200, typeof(BuscarClientesPorFuncionarioIdSucesso))
                 .Produces(404, typeof(BuscarClientesPorFuncionarioIdNaoEncontrado))
-                .Produces(500,typeof(BuscarClientesPorFuncionarioIdErro))
+                .Produces(500, typeof(BuscarClientesPorFuncionarioIdErro))
                 .WithMetadata(new SwaggerOperationAttribute("Obtem clientes de um funcionario", "Obter clientes de um funcionario"))
                 .WithTags("Funcionario");
 
