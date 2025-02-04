@@ -37,7 +37,6 @@ namespace Empresta.Aplicacao.Commands
             }
             catch (Exception ex)
             {
-
                 return CriarClienteResponse.Error(new ErroDto(CodigosErros.ErroSistematico, ex.Message));
             }
         }

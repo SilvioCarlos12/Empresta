@@ -30,13 +30,12 @@ namespace Empresta.Aplicacao.Queries
                 return BuscarClientesPorFuncionarioIdResponse.Sucesso(funcionario
                                                                       .Clientes
                                                                       .Select(x => x.ToDto()));
-
             }
             catch (Exception ex)
             {
 
                 return BuscarClientesPorFuncionarioIdResponse
-                    .Erro(new ErroDto(CodigosErros.ErroSistematico, MensagensErro.ErroSistematico));
+                    .Erro(new ErroDto(CodigosErros.ErroSistematico, ex.Message));
             }
         }
     }
