@@ -38,16 +38,16 @@ namespace Empresta.Aplicacao.Commands
             catch (Exception ex)
             {
 
-                return CriarClienteResponse.Error(new ErroDto(ex.Message, "000"));
+                return CriarClienteResponse.Error(new ErroDto(CodigosErros.ErroSistematico, ex.Message));
             }
         }
 
-        private async Task<CriarClienteResponse> CadastrarCliente(CriarClienteCommand request,Funcionario funcionario ,CancellationToken cancellationToken)
+        private async Task<CriarClienteResponse> CadastrarCliente(CriarClienteCommand request, Funcionario funcionario, CancellationToken cancellationToken)
         {
             Telefone telefone = request.Telefone.ToVo();
 
             var clienteExiste = await _clienteRepositorio
-                                        .GetByFilter(x => x.Telefone.Dd+x.Telefone.Numero == telefone.TelefoneCompleto(), cancellationToken);
+                                        .GetByFilter(x => x.Telefone.Dd + x.Telefone.Numero == telefone.TelefoneCompleto(), cancellationToken);
 
             if (clienteExiste.Any())
             {
@@ -60,7 +60,7 @@ namespace Empresta.Aplicacao.Commands
             await _clienteRepositorio.Add(cliente, cancellationToken);
 
             funcionario.AdicionarCliente(cliente);
-            
+
             await _funcionarioRepositorio.Update(funcionario, cancellationToken);
 
             return CriarClienteResponse.Sucesso();
@@ -77,7 +77,7 @@ namespace Empresta.Aplicacao.Commands
             if (clienteExisteNoFuncionario.Any())
             {
                 return CriarClienteResponse.Invalido(
-                    new ErroDto(CodigosErros.ClienteJaCadastradoParaEsseFuncionario, 
+                    new ErroDto(CodigosErros.ClienteJaCadastradoParaEsseFuncionario,
                     MensagensErro.ClienteJaCadastradoParaEsseFuncionario));
             }
 
@@ -103,7 +103,7 @@ namespace Empresta.Aplicacao.Commands
     {
         public static CriarClienteResponse Sucesso() => new CriarClienteSucesso();
         public static CriarClienteResponse Invalido(params ErroDto[] erroDtos) => new CriarClienteInvalido(erroDtos);
-        public static CriarClienteResponse Error( ErroDto erroDto) => new CriarClienteErro(erroDto);
+        public static CriarClienteResponse Error(ErroDto erroDto) => new CriarClienteErro(erroDto);
         public static CriarClienteResponse NaoEncontrado() => new CriarClienteNaoEncontrado();
     }
 
