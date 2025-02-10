@@ -6,7 +6,7 @@ using MongoDB.Driver;
 namespace Empresta.Infraestrutura.DbContext
 {
 
-    public class DbContext : IDbContext
+    public sealed class DbContext : IDbContext
     {
         private readonly IMongoDatabase _db;
 

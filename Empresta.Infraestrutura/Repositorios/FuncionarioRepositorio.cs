@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace Empresta.Infraestrutura.Repositorios;
 
-public class FuncionarioRepositorio:IFuncionarioRepositorio
+public sealed class FuncionarioRepositorio:IFuncionarioRepositorio
 {
     private readonly IDbContext _dbContext;
 

@@ -11,7 +11,7 @@ using System.Text.Json.Serialization;
 
 namespace Empresta.Aplicacao.Commands;
 
-public class CriarClienteHandler(
+public sealed class CriarClienteHandler(
     IFuncionarioRepositorio funcionarioRepositorio,
     IClienteRepositorio clienteRepositorio)
     : IRequestHandler<CriarClienteCommand, CriarClienteResponse>
@@ -81,17 +81,17 @@ public class CriarClienteHandler(
     }
 }
 
-public record CriarClienteCommand(string Nome, TelefoneDto Telefone, EnderecoDto Endereco) : IRequest<CriarClienteResponse>
+public sealed record CriarClienteCommand(string Nome, TelefoneDto Telefone, EnderecoDto Endereco) : IRequest<CriarClienteResponse>
 {
     [JsonIgnore]
     public Guid Id { get; set; }
 }
 
-public record CriarClienteSucesso : CriarClienteResponse;
-public record CriarClienteInvalido(params ErroDto[] ErroDtos) : CriarClienteResponse;
-public record CriarClienteErro(ErroDto ErroDto) : CriarClienteResponse;
-public record CriarClienteNaoEncontrado : CriarClienteResponse;
-public record CriarClienteResponse
+public sealed record CriarClienteSucesso : CriarClienteResponse;
+public sealed record CriarClienteInvalido(params ErroDto[] ErroDtos) : CriarClienteResponse;
+public sealed record CriarClienteErro(ErroDto ErroDto) : CriarClienteResponse;
+public sealed record CriarClienteNaoEncontrado : CriarClienteResponse;
+public  record CriarClienteResponse
 {
     public static CriarClienteResponse Sucesso() => new CriarClienteSucesso();
     public static CriarClienteResponse Invalido(params ErroDto[] erroDtos) => new CriarClienteInvalido(erroDtos);
@@ -99,7 +99,7 @@ public record CriarClienteResponse
     public static CriarClienteResponse NaoEncontrado() => new CriarClienteNaoEncontrado();
 }
 
-public class CriarClienteValidation : AbstractValidator<CriarClienteCommand>
+public sealed class CriarClienteValidation : AbstractValidator<CriarClienteCommand>
 {
     public CriarClienteValidation()
     {

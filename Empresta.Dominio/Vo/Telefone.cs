@@ -1,6 +1,6 @@
 ﻿namespace Empresta.Dominio.Vo
 {
-    public record Telefone
+    public sealed record Telefone
     {
         public string Dd { get; set; } = string.Empty;
         public string Numero { get; set; } = string.Empty;

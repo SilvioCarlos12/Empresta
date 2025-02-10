@@ -1,6 +1,6 @@
 ﻿namespace Empresta.Dominio.Vo
 {
-    public record Endereco
+    public sealed record Endereco
     {
         public Endereco()
         {

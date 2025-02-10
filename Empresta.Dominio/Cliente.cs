@@ -2,7 +2,7 @@
 
 namespace Empresta.Dominio
 {
-    public class Cliente : Pessoa
+    public sealed class Cliente : Pessoa
     {
         private Cliente(string nome, Telefone telefone, Endereco endereco) : base(nome, telefone, endereco)
         {

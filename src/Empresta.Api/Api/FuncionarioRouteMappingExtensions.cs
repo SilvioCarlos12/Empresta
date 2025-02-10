@@ -48,7 +48,7 @@ namespace Empresta.Api.Api
                 {
                     BuscarClientesPorFuncionarioIdSucesso sucesso => Results.Ok(sucesso),
                     BuscarClientesPorFuncionarioIdNaoEncontrado naoEncontrado => Results.NotFound(),
-                    BuscarClientesPorFuncionarioIdErro erro => erro.ErroDtos.ToResultPromblem(),
+                    BuscarClientesPorFuncionarioIdErro erro => erro.ErroDto.ToResultPromblem(),
                     _ => throw new ArgumentOutOfRangeException(nameof(response))
                 };
             }).Produces(200, typeof(BuscarClientesPorFuncionarioIdSucesso))

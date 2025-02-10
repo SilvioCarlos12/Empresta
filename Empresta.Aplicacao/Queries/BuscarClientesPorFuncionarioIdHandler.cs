@@ -7,7 +7,7 @@ using MediatR;
 
 namespace Empresta.Aplicacao.Queries;
 
-public class BuscarClientesPorFuncionarioIdHandler : IRequestHandler<BuscarClientesPorFuncionarioIdQuery, BuscarClientesPorFuncionarioIdResponse>
+public sealed class BuscarClientesPorFuncionarioIdHandler : IRequestHandler<BuscarClientesPorFuncionarioIdQuery, BuscarClientesPorFuncionarioIdResponse>
 {
     private readonly IFuncionarioRepositorio _funcionarioRepositorio;
 
@@ -40,10 +40,10 @@ public class BuscarClientesPorFuncionarioIdHandler : IRequestHandler<BuscarClien
     }
 }
 
-public record BuscarClientesPorFuncionarioIdQuery(Guid Id) : IRequest<BuscarClientesPorFuncionarioIdResponse>;
-public record BuscarClientesPorFuncionarioIdSucesso(IEnumerable<ClienteDto> Clientes) : BuscarClientesPorFuncionarioIdResponse;
-public record BuscarClientesPorFuncionarioIdNaoEncontrado() : BuscarClientesPorFuncionarioIdResponse;
-public record BuscarClientesPorFuncionarioIdErro(ErroDto ErroDto) : BuscarClientesPorFuncionarioIdResponse;
+public sealed record BuscarClientesPorFuncionarioIdQuery(Guid Id) : IRequest<BuscarClientesPorFuncionarioIdResponse>;
+public sealed record BuscarClientesPorFuncionarioIdSucesso(IEnumerable<ClienteDto> Clientes) : BuscarClientesPorFuncionarioIdResponse;
+public sealed record BuscarClientesPorFuncionarioIdNaoEncontrado() : BuscarClientesPorFuncionarioIdResponse;
+public sealed record BuscarClientesPorFuncionarioIdErro(ErroDto ErroDto) : BuscarClientesPorFuncionarioIdResponse;
 public record BuscarClientesPorFuncionarioIdResponse
 {
     public static BuscarClientesPorFuncionarioIdResponse Sucesso(IEnumerable<ClienteDto> clientes) => new BuscarClientesPorFuncionarioIdSucesso(clientes);
@@ -51,7 +51,7 @@ public record BuscarClientesPorFuncionarioIdResponse
     public static BuscarClientesPorFuncionarioIdResponse Erro(ErroDto erroDto) => new BuscarClientesPorFuncionarioIdErro(erroDto);
 }
 
-public class BuscarClientesPorFuncionarioIdValidacao : AbstractValidator<BuscarClientesPorFuncionarioIdQuery>
+public sealed class BuscarClientesPorFuncionarioIdValidacao : AbstractValidator<BuscarClientesPorFuncionarioIdQuery>
 {
     public BuscarClientesPorFuncionarioIdValidacao()
     {

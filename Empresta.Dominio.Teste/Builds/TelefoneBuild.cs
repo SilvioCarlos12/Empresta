@@ -3,7 +3,7 @@ using Empresta.Dominio.Vo;
 
 namespace Empresta.Dominio.Teste.Builds
 {
-    public class TelefoneBuild
+    public sealed class TelefoneBuild
     {
         private Telefone _telefone;
 
@@ -13,7 +13,7 @@ namespace Empresta.Dominio.Teste.Builds
             _telefone = new Faker<Telefone>("pt_BR")
                                .RuleFor(x => x.Dd, faker => faker.Phone.PhoneNumberFormat())
                                .RuleFor(x => x.Numero, faker => faker.Phone.PhoneNumber())
-                               .Generate();
+                               .Generate(); 
 
         }
 

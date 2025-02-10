@@ -2,7 +2,7 @@
 
 namespace Empresta.Dominio
 {
-    public class Funcionario : Pessoa
+    public sealed class Funcionario : Pessoa
     {
         public List<Cliente> Clientes { get; private set; } = new List<Cliente>();
         private Funcionario(string nome, Telefone telefone, Endereco endereco) : base(nome, telefone, endereco)
