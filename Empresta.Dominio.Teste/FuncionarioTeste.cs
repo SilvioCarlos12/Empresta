@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Empresta.Dominio.Teste
 {
-    public class FuncionarioTeste
+    public sealed class FuncionarioTeste
     {
         public FuncionarioTeste() { }
 

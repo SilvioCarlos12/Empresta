@@ -2,7 +2,7 @@
 
 namespace Empresta.Dominio.Teste.Builds
 {
-    public class ClienteBuild
+    public sealed class ClienteBuild
     {
         private string _nome;
         private Telefone _telefone;

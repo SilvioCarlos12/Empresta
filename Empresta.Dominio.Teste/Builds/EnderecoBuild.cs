@@ -3,7 +3,7 @@ using Empresta.Dominio.Vo;
 
 namespace Empresta.Dominio.Teste.Builds
 {
-    public class EnderecoBuild
+    public sealed class EnderecoBuild
     {
         private Endereco _endereco;
 
@@ -45,6 +45,12 @@ namespace Empresta.Dominio.Teste.Builds
         public EnderecoBuild ComEstado(string estado)
         {
             _endereco.Estado = estado;
+            return this;
+        }
+        
+        public EnderecoBuild ComBairro(string bairro)
+        {
+            _endereco.Bairro = bairro;
             return this;
         }
 
