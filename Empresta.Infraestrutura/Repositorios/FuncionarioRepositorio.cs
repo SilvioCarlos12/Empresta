@@ -28,12 +28,12 @@ public class FuncionarioRepositorio:IFuncionarioRepositorio
 
     }
 
-    public async Task<IEnumerable<Funcionario>> GetAll(CancellationToken cancellationToken)
+    public async Task<List<Funcionario>> GetAll(CancellationToken cancellationToken)
     {
         return await _dbContext.GetCollection<Funcionario>().AsQueryable().ToListAsync(cancellationToken);
     }
 
-    public async Task<IEnumerable<Funcionario>> GetByFilter(Expression<Func<Funcionario, bool>> filter, CancellationToken cancellationToken)
+    public async Task<List<Funcionario>> GetByFilter(Expression<Func<Funcionario, bool>> filter, CancellationToken cancellationToken)
     {
         var filtroBuild = Builders<Funcionario>.Filter;
 

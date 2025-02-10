@@ -8,7 +8,7 @@ namespace Empresta.Ioc.Validation
     {
         public IResult CreateResult(EndpointFilterInvocationContext context, FluentValidation.Results.ValidationResult validationResult)
         {
-            var validationProblemErrors = validationResult.Errors.Select(x=>new ErroDto(x.ErrorCode,x.ErrorMessage));
+            var validationProblemErrors = validationResult.Errors.Select(x => new ErroDto(x.ErrorCode, x.ErrorMessage));
             return Results.BadRequest(validationProblemErrors);
         }
     }

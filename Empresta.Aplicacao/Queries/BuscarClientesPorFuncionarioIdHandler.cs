@@ -5,54 +5,56 @@ using Empresta.Infraestrutura.Repositorios.Interfaces;
 using FluentValidation;
 using MediatR;
 
-namespace Empresta.Aplicacao.Queries
+namespace Empresta.Aplicacao.Queries;
+
+public class BuscarClientesPorFuncionarioIdHandler : IRequestHandler<BuscarClientesPorFuncionarioIdQuery, BuscarClientesPorFuncionarioIdResponse>
 {
-    public class BuscarClientesPorFuncionarioIdHandler : IRequestHandler<BuscarClientesPorFuncionarioIdQuery, BuscarClientesPorFuncionarioIdResponse>
+    private readonly IFuncionarioRepositorio _funcionarioRepositorio;
+
+    public BuscarClientesPorFuncionarioIdHandler(IFuncionarioRepositorio funcionarioRepositorio)
     {
-        private readonly IFuncionarioRepositorio _funcionarioRepositorio;
-
-        public BuscarClientesPorFuncionarioIdHandler(IFuncionarioRepositorio funcionarioRepositorio)
-        {
-            _funcionarioRepositorio = funcionarioRepositorio;
-        }
-
-        public async Task<BuscarClientesPorFuncionarioIdResponse> Handle(BuscarClientesPorFuncionarioIdQuery request, CancellationToken cancellationToken)
-        {
-            try
-            {
-                var funcionario = await _funcionarioRepositorio.GetById(request.Id, cancellationToken);
-
-                if (funcionario is null)
-                {
-                    return BuscarClientesPorFuncionarioIdResponse.NaoEncontrado();
-                }
-
-                return BuscarClientesPorFuncionarioIdResponse.Sucesso(funcionario
-                                                                      .Clientes
-                                                                      .Select(x => x.ToDto()));
-            }
-            catch (Exception ex)
-            {
-
-                return BuscarClientesPorFuncionarioIdResponse
-                    .Erro(new ErroDto(CodigosErros.ErroSistematico, ex.Message));
-            }
-        }
+        _funcionarioRepositorio = funcionarioRepositorio;
     }
 
-    public record BuscarClientesPorFuncionarioIdQuery(Guid Id) : IRequest<BuscarClientesPorFuncionarioIdResponse>;
-    public record BuscarClientesPorFuncionarioIdSucesso(IEnumerable<ClienteDto> Clientes) : BuscarClientesPorFuncionarioIdResponse;
-    public record BuscarClientesPorFuncionarioIdNaoEncontrado() : BuscarClientesPorFuncionarioIdResponse;
-    public record BuscarClientesPorFuncionarioIdErro(ErroDto ErroDtos) : BuscarClientesPorFuncionarioIdResponse;
-    public record BuscarClientesPorFuncionarioIdResponse
+    public async Task<BuscarClientesPorFuncionarioIdResponse> Handle(BuscarClientesPorFuncionarioIdQuery request, CancellationToken cancellationToken)
     {
-        public static BuscarClientesPorFuncionarioIdResponse Sucesso(IEnumerable<ClienteDto> clientes) => new BuscarClientesPorFuncionarioIdSucesso(clientes);
-        public static BuscarClientesPorFuncionarioIdResponse NaoEncontrado() => new BuscarClientesPorFuncionarioIdNaoEncontrado();
-        public static BuscarClientesPorFuncionarioIdResponse Erro(ErroDto erroDtos) => new BuscarClientesPorFuncionarioIdErro(erroDtos);
+        try
+        {
+            var funcionario = await _funcionarioRepositorio.GetById(request.Id, cancellationToken);
+
+            if (funcionario is null)
+            {
+                return BuscarClientesPorFuncionarioIdResponse.NaoEncontrado();
+            }
+
+            return BuscarClientesPorFuncionarioIdResponse.Sucesso(funcionario
+                .Clientes
+                .Select(x => x.ToDto()));
+        }
+        catch (Exception ex)
+        {
+
+            return BuscarClientesPorFuncionarioIdResponse
+                .Erro(new ErroDto(CodigosErros.ErroSistematico, ex.Message));
+        }
     }
+}
 
-    public class BuscarClientesPorFuncionarioIdValidacao : AbstractValidator<BuscarClientesPorFuncionarioIdQuery>
+public record BuscarClientesPorFuncionarioIdQuery(Guid Id) : IRequest<BuscarClientesPorFuncionarioIdResponse>;
+public record BuscarClientesPorFuncionarioIdSucesso(IEnumerable<ClienteDto> Clientes) : BuscarClientesPorFuncionarioIdResponse;
+public record BuscarClientesPorFuncionarioIdNaoEncontrado() : BuscarClientesPorFuncionarioIdResponse;
+public record BuscarClientesPorFuncionarioIdErro(ErroDto ErroDto) : BuscarClientesPorFuncionarioIdResponse;
+public record BuscarClientesPorFuncionarioIdResponse
+{
+    public static BuscarClientesPorFuncionarioIdResponse Sucesso(IEnumerable<ClienteDto> clientes) => new BuscarClientesPorFuncionarioIdSucesso(clientes);
+    public static BuscarClientesPorFuncionarioIdResponse NaoEncontrado() => new BuscarClientesPorFuncionarioIdNaoEncontrado();
+    public static BuscarClientesPorFuncionarioIdResponse Erro(ErroDto erroDto) => new BuscarClientesPorFuncionarioIdErro(erroDto);
+}
+
+public class BuscarClientesPorFuncionarioIdValidacao : AbstractValidator<BuscarClientesPorFuncionarioIdQuery>
+{
+    public BuscarClientesPorFuncionarioIdValidacao()
     {
-
+            
     }
 }

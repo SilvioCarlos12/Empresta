@@ -30,7 +30,7 @@ public class ClienteRepositorio : IClienteRepositorio
             .FirstOrDefaultAsync(cancellationToken);
     }
 
-    public async Task<IEnumerable<Cliente>> GetAll(CancellationToken cancellationToken)
+    public async Task<List<Cliente>> GetAll(CancellationToken cancellationToken)
     {
         return await _dbContext.GetCollection<Cliente>()
             .AsQueryable().ToListAsync(cancellationToken);
@@ -51,7 +51,7 @@ public class ClienteRepositorio : IClienteRepositorio
         await _dbContext.UpdateDocument(entity, cancellationToken);
     }
 
-    public async Task<IEnumerable<Cliente>> GetByFilter(Expression<Func<Cliente, bool>> filter, CancellationToken cancellationToken)
+    public async Task<List<Cliente>> GetByFilter(Expression<Func<Cliente, bool>> filter, CancellationToken cancellationToken)
     {
         var filtroBuild = Builders<Cliente>.Filter;
 
