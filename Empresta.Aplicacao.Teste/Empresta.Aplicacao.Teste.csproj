@@ -22,8 +22,4 @@
     <ProjectReference Include="..\Empresta.Dominio\Empresta.Dominio.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Queries\" />
-  </ItemGroup>
-
 </Project>

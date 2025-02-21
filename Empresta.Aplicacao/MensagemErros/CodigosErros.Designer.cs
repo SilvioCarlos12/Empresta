@@ -22,7 +22,7 @@ namespace Empresta.Aplicacao.MensagemErros {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class CodigosErros {
+    public class CodigosErros {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Empresta.Aplicacao.MensagemErros {
         ///   Retorna a instância de ResourceManager armazenada em cache usada por essa classe.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Empresta.Aplicacao.MensagemErros.CodigosErros", typeof(CodigosErros).Assembly);
@@ -51,7 +51,7 @@ namespace Empresta.Aplicacao.MensagemErros {
         ///   pesquisas de recursos que usam essa classe de recurso de tipo de alta segurança.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Empresta.Aplicacao.MensagemErros {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a 08.
         /// </summary>
-        internal static string BairroEObrigatorio {
+        public static string BairroEObrigatorio {
             get {
                 return ResourceManager.GetString("BairroEObrigatorio", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace Empresta.Aplicacao.MensagemErros {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a 11.
         /// </summary>
-        internal static string CepEObrigatorio {
+        public static string CepEObrigatorio {
             get {
                 return ResourceManager.GetString("CepEObrigatorio", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace Empresta.Aplicacao.MensagemErros {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a 09.
         /// </summary>
-        internal static string CidadeEObrigatorio {
+        public static string CidadeEObrigatorio {
             get {
                 return ResourceManager.GetString("CidadeEObrigatorio", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace Empresta.Aplicacao.MensagemErros {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a 12.
         /// </summary>
-        internal static string ClienteJaCadastradoParaEsseFuncionario {
+        public static string ClienteJaCadastradoParaEsseFuncionario {
             get {
                 return ResourceManager.GetString("ClienteJaCadastradoParaEsseFuncionario", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace Empresta.Aplicacao.MensagemErros {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a 04.
         /// </summary>
-        internal static string DdEObrigatorio {
+        public static string DdEObrigatorio {
             get {
                 return ResourceManager.GetString("DdEObrigatorio", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace Empresta.Aplicacao.MensagemErros {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a 03.
         /// </summary>
-        internal static string DdInvalido {
+        public static string DdInvalido {
             get {
                 return ResourceManager.GetString("DdInvalido", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace Empresta.Aplicacao.MensagemErros {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a 12.
         /// </summary>
-        internal static string ErroSistematico {
+        public static string ErroSistematico {
             get {
                 return ResourceManager.GetString("ErroSistematico", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace Empresta.Aplicacao.MensagemErros {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a 10.
         /// </summary>
-        internal static string EstadoEObrigatorio {
+        public static string EstadoEObrigatorio {
             get {
                 return ResourceManager.GetString("EstadoEObrigatorio", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace Empresta.Aplicacao.MensagemErros {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a 01.
         /// </summary>
-        internal static string NaoEncontradoFuncionario {
+        public static string NaoEncontradoFuncionario {
             get {
                 return ResourceManager.GetString("NaoEncontradoFuncionario", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace Empresta.Aplicacao.MensagemErros {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a 06.
         /// </summary>
-        internal static string NomeEObrigatorio {
+        public static string NomeEObrigatorio {
             get {
                 return ResourceManager.GetString("NomeEObrigatorio", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace Empresta.Aplicacao.MensagemErros {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a 05.
         /// </summary>
-        internal static string NumeroEObrigatorio {
+        public static string NumeroEObrigatorio {
             get {
                 return ResourceManager.GetString("NumeroEObrigatorio", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace Empresta.Aplicacao.MensagemErros {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a 02.
         /// </summary>
-        internal static string NumeroTelefoneInvalido {
+        public static string NumeroTelefoneInvalido {
             get {
                 return ResourceManager.GetString("NumeroTelefoneInvalido", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace Empresta.Aplicacao.MensagemErros {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a 07.
         /// </summary>
-        internal static string RuaEObrigatorio {
+        public static string RuaEObrigatorio {
             get {
                 return ResourceManager.GetString("RuaEObrigatorio", resourceCulture);
             }

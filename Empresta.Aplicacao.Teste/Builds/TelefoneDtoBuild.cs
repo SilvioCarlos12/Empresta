@@ -25,7 +25,7 @@ public sealed class TelefoneDtoBuild
         return this;
     }
 
-    public TelefoneDto Buid()
+    public TelefoneDto Build()
     {
         return new TelefoneDto(_dd, _numeroTelefone);
     }

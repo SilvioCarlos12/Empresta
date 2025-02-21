@@ -66,7 +66,7 @@ public sealed class CriarClienteHandler(
                 .Single()
                 .Id.Equals(cliente.Id)), cancellationToken);
 
-        if (clienteExisteNoFuncionario.Count == 0)
+        if (clienteExisteNoFuncionario.Count == 1)
         {
             return CriarClienteResponse.Invalido(
                 new ErroDto(CodigosErros.ClienteJaCadastradoParaEsseFuncionario,

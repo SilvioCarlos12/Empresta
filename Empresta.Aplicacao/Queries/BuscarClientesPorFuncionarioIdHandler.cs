@@ -29,7 +29,7 @@ public sealed class BuscarClientesPorFuncionarioIdHandler : IRequestHandler<Busc
 
             return BuscarClientesPorFuncionarioIdResponse.Sucesso(funcionario
                 .Clientes
-                .Select(x => x.ToDto()));
+                .ConvertAll(x => x.ToDto()));
         }
         catch (Exception ex)
         {
@@ -41,12 +41,12 @@ public sealed class BuscarClientesPorFuncionarioIdHandler : IRequestHandler<Busc
 }
 
 public sealed record BuscarClientesPorFuncionarioIdQuery(Guid Id) : IRequest<BuscarClientesPorFuncionarioIdResponse>;
-public sealed record BuscarClientesPorFuncionarioIdSucesso(IEnumerable<ClienteDto> Clientes) : BuscarClientesPorFuncionarioIdResponse;
+public sealed record BuscarClientesPorFuncionarioIdSucesso(List<ClienteDto> Clientes) : BuscarClientesPorFuncionarioIdResponse;
 public sealed record BuscarClientesPorFuncionarioIdNaoEncontrado() : BuscarClientesPorFuncionarioIdResponse;
 public sealed record BuscarClientesPorFuncionarioIdErro(ErroDto ErroDto) : BuscarClientesPorFuncionarioIdResponse;
 public record BuscarClientesPorFuncionarioIdResponse
 {
-    public static BuscarClientesPorFuncionarioIdResponse Sucesso(IEnumerable<ClienteDto> clientes) => new BuscarClientesPorFuncionarioIdSucesso(clientes);
+    public static BuscarClientesPorFuncionarioIdResponse Sucesso(List<ClienteDto> clientes) => new BuscarClientesPorFuncionarioIdSucesso(clientes);
     public static BuscarClientesPorFuncionarioIdResponse NaoEncontrado() => new BuscarClientesPorFuncionarioIdNaoEncontrado();
     public static BuscarClientesPorFuncionarioIdResponse Erro(ErroDto erroDto) => new BuscarClientesPorFuncionarioIdErro(erroDto);
 }

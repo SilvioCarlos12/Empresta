@@ -1,9 +1,7 @@
 ﻿namespace Empresta.Aplicacao.Dto
 {
-    public sealed record class ClienteDto : PessoaDto
+    public sealed record class ClienteDto(Guid ClienteId, string Nome, TelefoneDto Telefone, EnderecoDto Endereco) : 
+        PessoaDto(Nome, Telefone, Endereco)
     {
-        public ClienteDto(string Nome, TelefoneDto Telefone, EnderecoDto Endereco) : base(Nome, Telefone, Endereco)
-        {
-        }
     }
 }

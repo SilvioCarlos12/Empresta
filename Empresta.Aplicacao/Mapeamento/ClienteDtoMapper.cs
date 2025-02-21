@@ -12,7 +12,7 @@ namespace Empresta.Aplicacao.Mapper
 
         public static ClienteDto ToDto(this Cliente cliente)
         {
-            return new ClienteDto(cliente.Nome, cliente.Telefone.ToDto(), cliente.Endereco.ToDto());
+            return new ClienteDto(cliente.Id,cliente.Nome, cliente.Telefone.ToDto(), cliente.Endereco.ToDto());
         }
     }
 }
