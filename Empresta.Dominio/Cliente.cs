@@ -8,6 +8,12 @@ namespace Empresta.Dominio
         {
         }
 
+        public void AtualizarCliente(string nome, Telefone telefone, Endereco endereco)
+        {
+            Nome = nome;
+            Telefone = telefone;
+            Endereco = endereco;
+        }
         public static Cliente Criar(string nome, Telefone telefone, Endereco endereco)
         {
             return new Cliente(nome, telefone, endereco);

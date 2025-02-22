@@ -14,6 +14,13 @@ namespace Empresta.Dominio
             Clientes.Add(cliente);
         }
 
+        public void AtualizarClienteDoFuncionario(Cliente cliente)
+        {
+            Clientes.Remove(cliente);
+
+            Clientes.Add(cliente);
+        }
+
         public static Funcionario Criar(string nome, Telefone telefone, Endereco endereco)
         {
             return new Funcionario(nome, telefone, endereco);

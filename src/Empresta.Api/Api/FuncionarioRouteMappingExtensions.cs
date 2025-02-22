@@ -11,7 +11,8 @@ namespace Empresta.Api.Api
     {
         public static WebApplication MapFuncionario(this WebApplication app, string rotaRaiz) =>
             app.MapCriarCliente(rotaRaiz)
-               .MapObterCliente(rotaRaiz);
+               .MapObterCliente(rotaRaiz)
+               .MapAtualizarCliente(rotaRaiz);
 
         private static WebApplication MapCriarCliente(this WebApplication app, string rotaRaiz)
         {
@@ -55,6 +56,31 @@ namespace Empresta.Api.Api
                 .Produces(404, typeof(BuscarClientesPorFuncionarioIdNaoEncontrado))
                 .Produces(500, typeof(BuscarClientesPorFuncionarioIdErro))
                 .WithMetadata(new SwaggerOperationAttribute("Obtem clientes de um funcionario", "Obter clientes de um funcionario"))
+                .WithTags("Funcionario");
+
+            return app;
+        }
+
+        private static WebApplication MapAtualizarCliente(this WebApplication app, string rotaRaiz)
+        {
+            app.MapPut($"{rotaRaiz}/{{funcioarioId}}/cliente/{{clienteId}}", async ([FromServices] IMediator mediator, Guid funcioarioId,Guid clienteId,
+                AtualizarClienteDeFuncionarioCommand cmd
+                , CancellationToken cancellationToken) =>
+            {
+                cmd.FuncionarioId = funcioarioId;
+                cmd.ClienteId = clienteId;
+                var response = await mediator.Send(cmd, cancellationToken);
+                return response switch
+                {
+                    AtualizarClienteDeFuncionarioSucesso sucesso => Results.Ok(sucesso),
+                    AtualizarClienteDeFuncionarioNaoEncontrado naoEncontrado => Results.NotFound(),
+                    AtualizarClienteDeFuncionarioErro erro => erro.ErroDto.ToResultPromblem(),
+                    _ => throw new ArgumentOutOfRangeException(nameof(response))
+                };
+            }).Produces(200, typeof(AtualizarClienteDeFuncionarioSucesso))
+                .Produces(404, typeof(AtualizarClienteDeFuncionarioNaoEncontrado))
+                .Produces(500, typeof(AtualizarClienteDeFuncionarioErro))
+                .WithMetadata(new SwaggerOperationAttribute("Atualizar um cliente de um funcionario", "Atualizar um cliente de um funcionario"))
                 .WithTags("Funcionario");
 
             return app;
