@@ -6,7 +6,7 @@ namespace Empresta.Dominio;
 public sealed class Caixa
 {
     public Guid Id { get;  set; } = Guid.NewGuid();
-    public Funcionario Funcionario { get; private set; }
+    public Guid FuncionarioId { get; private set; }
     public StatusCaixa StatusCaixa { get; private set; }
     public DateTime DataAbertura { get; private set; }
     public DateTime? DataFechamento { get; private set; }
@@ -18,10 +18,10 @@ public sealed class Caixa
         return StatusCaixa == StatusCaixa.Aberto;
     }
 
-    private Caixa(decimal valorInicial, Funcionario funcionario)
+    private Caixa(decimal valorInicial, Guid funcionarioId)
     {
         ValorInicial = valorInicial;
-        Funcionario = funcionario;
+        FuncionarioId = funcionarioId;
         DataAbertura = DateTime.UtcNow;
         StatusCaixa = StatusCaixa.Aberto;
         CriarFluxoCaixa(valorInicial, TipoDespesa.AberturaDeCaixa);
@@ -40,8 +40,8 @@ public sealed class Caixa
         FluxoCaixas.Add(fluxoCaixa);
     }
 
-    public static Caixa AbrirCaixa(decimal valorDecimal, Funcionario funcionario)
+    public static Caixa AbrirCaixa(decimal valorDecimal, Guid funcionarioId)
     {
-        return new Caixa(valorDecimal, funcionario);
+        return new Caixa(valorDecimal, funcionarioId);
     }
 }
