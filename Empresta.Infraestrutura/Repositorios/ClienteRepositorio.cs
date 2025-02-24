@@ -7,39 +7,31 @@ using System.Linq.Expressions;
 
 namespace Empresta.Infraestrutura.Repositorios;
 
-public sealed class ClienteRepositorio : IClienteRepositorio
+public sealed class ClienteRepositorio(IDbContext dbContext) : IClienteRepositorio
 {
-    private readonly IDbContext _dbContext;
-
-    public ClienteRepositorio(IDbContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
-
-
     public async Task Add(Cliente entity, CancellationToken cancellationToken)
     {
-        await _dbContext.InsertDocument(entity, cancellationToken);
+        await dbContext.InsertDocument(entity, cancellationToken);
     }
 
     public async Task<Cliente?> GetById(Guid id, CancellationToken cancellationToken)
     {
 
-        return await _dbContext.GetCollection<Cliente>()
+        return await dbContext.GetCollection<Cliente>()
             .Find(x => x.Id == id)
             .FirstOrDefaultAsync(cancellationToken);
     }
 
     public async Task<List<Cliente>> GetAll(CancellationToken cancellationToken)
     {
-        return await _dbContext.GetCollection<Cliente>()
+        return await dbContext.GetCollection<Cliente>()
             .AsQueryable().ToListAsync(cancellationToken);
     }
 
     public async Task Delete(Guid id, CancellationToken cancellationToken)
     {
         var cliente = await GetById(id, cancellationToken);
-        await _dbContext.DeleteDocument(cliente, cancellationToken);
+        await dbContext.DeleteDocument(cliente, cancellationToken);
     }
 
     public async Task Update(Cliente entity, CancellationToken cancellationToken)
@@ -48,13 +40,13 @@ public sealed class ClienteRepositorio : IClienteRepositorio
 
         entity.Id = clienteFiltrado!.Id;
 
-        await _dbContext.UpdateDocument(entity, cancellationToken);
+        await dbContext.UpdateDocument(entity, cancellationToken);
     }
 
     public async Task<List<Cliente>> GetByFilter(Expression<Func<Cliente, bool>> filter, CancellationToken cancellationToken)
     {
         var filtroBuild = Builders<Cliente>.Filter;
 
-        return await _dbContext.GetCollection<Cliente>().Find(filtroBuild.Where(filter)).ToListAsync(cancellationToken);
+        return await dbContext.GetCollection<Cliente>().Find(filtroBuild.Where(filter)).ToListAsync(cancellationToken);
     }
 }

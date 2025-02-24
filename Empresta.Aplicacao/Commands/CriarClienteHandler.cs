@@ -26,7 +26,7 @@ public sealed class CriarClienteHandler(
             {
                 return CriarClienteResponse.NaoEncontrado();
             }
-
+            
             return await CadastrarCliente(request, funcionario, cancellationToken);
         }
         catch (Exception ex)

@@ -7,42 +7,35 @@ using System.Linq.Expressions;
 
 namespace Empresta.Infraestrutura.Repositorios;
 
-public sealed class FuncionarioRepositorio:IFuncionarioRepositorio
+public sealed class FuncionarioRepositorio(IDbContext dbContext) : IFuncionarioRepositorio
 {
-    private readonly IDbContext _dbContext;
-
-    public FuncionarioRepositorio(IDbContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
-
     public async Task Add(Funcionario entity, CancellationToken cancellationToken)
     {
-         await _dbContext.InsertDocument(entity, cancellationToken);
+         await dbContext.InsertDocument(entity, cancellationToken);
     }
 
     public async Task Delete(Guid id, CancellationToken cancellationToken)
     {
         var funcionario = await GetById(id, cancellationToken);
-        await _dbContext.DeleteDocument(funcionario, cancellationToken);
+        await dbContext.DeleteDocument(funcionario, cancellationToken);
 
     }
 
     public async Task<List<Funcionario>> GetAll(CancellationToken cancellationToken)
     {
-        return await _dbContext.GetCollection<Funcionario>().AsQueryable().ToListAsync(cancellationToken);
+        return await dbContext.GetCollection<Funcionario>().AsQueryable().ToListAsync(cancellationToken);
     }
 
     public async Task<List<Funcionario>> GetByFilter(Expression<Func<Funcionario, bool>> filter, CancellationToken cancellationToken)
     {
         var filtroBuild = Builders<Funcionario>.Filter;
 
-        return await _dbContext.GetCollection<Funcionario>().Find(filtroBuild.Where(filter)).ToListAsync(cancellationToken);
+        return await dbContext.GetCollection<Funcionario>().Find(filtroBuild.Where(filter)).ToListAsync(cancellationToken);
     }
 
     public async Task<Funcionario?> GetById(Guid id, CancellationToken cancellationToken)
     {
-        return await _dbContext.GetCollection<Funcionario>()
+        return await dbContext.GetCollection<Funcionario>()
             .Find(x => x.Id == id)
             .FirstOrDefaultAsync(cancellationToken);
     }
@@ -53,6 +46,6 @@ public sealed class FuncionarioRepositorio:IFuncionarioRepositorio
 
         entity.Id = funcionarioFiltrado!.Id;
 
-        await _dbContext.UpdateDocument(entity, cancellationToken);
+        await dbContext.UpdateDocument(entity, cancellationToken);
     }
 }

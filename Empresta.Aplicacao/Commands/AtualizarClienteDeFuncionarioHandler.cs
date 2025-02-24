@@ -41,6 +41,7 @@ namespace Empresta.Aplicacao.Commands
                 cliente.AtualizarCliente(request.Nome, request.Telefone.ToVo(), request.Endereco.ToVo());
 
                 funcionario.AtualizarClienteDoFuncionario(cliente);
+                
 
                 await _funcionarioRepositorio.Update(funcionario, cancellationToken);
 

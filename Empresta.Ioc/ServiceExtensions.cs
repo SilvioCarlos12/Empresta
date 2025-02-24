@@ -34,6 +34,7 @@ public static class ServiceExtensions
     {
         serviceCollection.AddScoped<IClienteRepositorio, ClienteRepositorio>();
         serviceCollection.AddScoped<IFuncionarioRepositorio, FuncionarioRepositorio>();
+        serviceCollection.AddScoped<ICaixaRepositorio, CaixaRepositorio>();
         
         return serviceCollection;
     }
@@ -63,5 +64,6 @@ public static class ServiceExtensions
         EnderecoMapper.Register();
         ClienteMapper.Register();
         FuncionarioMapper.Register();
+        CaixaMapper.Register();
     }
 }
