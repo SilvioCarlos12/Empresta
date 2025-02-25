@@ -28,7 +28,8 @@ public static class CaixaRouteMappingExtensions
                     AbrirCaixaErro erro => erro.ErroDto.ToResultPromblem(),
                     _ => throw new ArgumentOutOfRangeException(nameof(response))
                 };
-            }).Produces(201, typeof(AbrirCaixaSucesso))
+            })
+            .Produces(201, typeof(AbrirCaixaSucesso))
             .Produces(400, typeof(AbrirCaixaInvalido))
             .Produces(404, typeof(AbrirCaixaNaoEncontrado))
             .Produces(500, typeof(AbrirCaixaErro))
@@ -53,7 +54,8 @@ public static class CaixaRouteMappingExtensions
                     FecharCaixaErro erro => erro.ErroDto.ToResultPromblem(),
                     _ => throw new ArgumentOutOfRangeException(nameof(response))
                 };
-            }).Produces(200, typeof(FecharCaixaSucesso))
+            })
+            .Produces(200, typeof(FecharCaixaSucesso))
             .Produces(400, typeof(FecharCaixaInvalido))
             .Produces(404, typeof(FecharCaixaNaoEncontrado))
             .Produces(500, typeof(FecharCaixaErro))
