@@ -9,22 +9,16 @@ using MediatR;
 
 namespace Empresta.Aplicacao.Commands;
 
-public sealed class AbrirCaixaHandler : IRequestHandler<AbrirCaixaCommand,AbrirCaixaResponse>
+public sealed class AbrirCaixaHandler(
+    IFuncionarioRepositorio funcionarioRepositorio,
+    ICaixaRepositorio caixaRepositorio)
+    : IRequestHandler<AbrirCaixaCommand, AbrirCaixaResponse>
 {
-    private readonly IFuncionarioRepositorio _funcionarioRepositorio;
-    private readonly ICaixaRepositorio _caixaRepositorio;
-
-    public AbrirCaixaHandler(IFuncionarioRepositorio funcionarioRepositorio, ICaixaRepositorio caixaRepositorio)
-    {
-        _funcionarioRepositorio = funcionarioRepositorio;
-        _caixaRepositorio = caixaRepositorio;
-    }
-
     public async Task<AbrirCaixaResponse> Handle(AbrirCaixaCommand request, CancellationToken cancellationToken)
     {
         try
         {
-            var funcionario = await _funcionarioRepositorio.GetById(request.FuncionarioId, cancellationToken);
+            var funcionario = await funcionarioRepositorio.GetById(request.FuncionarioId, cancellationToken);
 
             if (funcionario is null)
             {
@@ -32,7 +26,7 @@ public sealed class AbrirCaixaHandler : IRequestHandler<AbrirCaixaCommand,AbrirC
             }
 
             var existeEmAberto =
-                await _caixaRepositorio.GetByFilter(x => x.StatusCaixa == StatusCaixa.Aberto, cancellationToken);
+                await caixaRepositorio.GetByFilter(x => x.StatusCaixa == StatusCaixa.Aberto, cancellationToken);
 
             if (existeEmAberto.Count != 0)
             {
@@ -42,7 +36,7 @@ public sealed class AbrirCaixaHandler : IRequestHandler<AbrirCaixaCommand,AbrirC
             
             var caixa = Caixa.AbrirCaixa(request.ValorInicial, request.FuncionarioId);
 
-            await _caixaRepositorio.Add(caixa,cancellationToken);
+            await caixaRepositorio.Add(caixa,cancellationToken);
 
             return AbrirCaixaResponse.Sucesso();
         }
