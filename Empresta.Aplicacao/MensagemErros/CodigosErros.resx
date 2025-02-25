@@ -165,4 +165,7 @@
   <data name="JaExisteCaixaEmAberto" xml:space="preserve">
     <value>15</value>
   </data>
+  <data name="NaoHaCaixaAberto" xml:space="preserve">
+    <value>16</value>
+  </data>
 </root>

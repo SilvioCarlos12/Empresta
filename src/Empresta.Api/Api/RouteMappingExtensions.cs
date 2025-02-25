@@ -2,9 +2,9 @@
 {
     public static class RouteMappingExtensions
     {
-        private const string _funcionario = "funcionario";
+        private const string Funcionario = "funcionario";
         public static WebApplication MapRotas(this WebApplication app) => app
-            .MapFuncionario(_funcionario)
-            .MapCaixa(_funcionario);
+            .MapCliente(Funcionario)
+            .MapCaixa(Funcionario);
     }
 }

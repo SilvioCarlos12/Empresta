@@ -159,6 +159,15 @@ namespace Empresta.Aplicacao.MensagemErros {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 16.
+        /// </summary>
+        public static string NaoHaCaixaAberto {
+            get {
+                return ResourceManager.GetString("NaoHaCaixaAberto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 06.
         /// </summary>
         public static string NomeEObrigatorio {

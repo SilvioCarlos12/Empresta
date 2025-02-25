@@ -150,6 +150,15 @@ namespace Empresta.Aplicacao.MensagemErros {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Não há caixa aberto para fechar..
+        /// </summary>
+        public static string NaoHaCaixaAberto {
+            get {
+                return ResourceManager.GetString("NaoHaCaixaAberto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O nome é obrigatório..
         /// </summary>
         public static string NomeEObrigatorio {

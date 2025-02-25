@@ -162,4 +162,7 @@
   <data name="JaExisteCaixaAberto" xml:space="preserve">
     <value>Já existe um caixa em aberto, fecha ele antes para abri um novo.</value>
   </data>
+  <data name="NaoHaCaixaAberto" xml:space="preserve">
+    <value>Não há caixa aberto para fechar.</value>
+  </data>
 </root>
