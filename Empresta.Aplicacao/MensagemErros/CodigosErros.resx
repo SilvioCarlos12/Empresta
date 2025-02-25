@@ -156,4 +156,13 @@
   <data name="ErroSistematico" xml:space="preserve">
     <value>12</value>
   </data>
+  <data name="ValorInicialEObrigatorio" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="FuncionarioIdEObrigatorio" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="JaExisteCaixaEmAberto" xml:space="preserve">
+    <value>15</value>
+  </data>
 </root>

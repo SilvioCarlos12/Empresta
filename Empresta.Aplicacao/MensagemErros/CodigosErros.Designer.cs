@@ -132,6 +132,24 @@ namespace Empresta.Aplicacao.MensagemErros {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 14.
+        /// </summary>
+        public static string FuncionarioIdEObrigatorio {
+            get {
+                return ResourceManager.GetString("FuncionarioIdEObrigatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 15.
+        /// </summary>
+        public static string JaExisteCaixaEmAberto {
+            get {
+                return ResourceManager.GetString("JaExisteCaixaEmAberto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 01.
         /// </summary>
         public static string NaoEncontradoFuncionario {
@@ -173,6 +191,15 @@ namespace Empresta.Aplicacao.MensagemErros {
         public static string RuaEObrigatorio {
             get {
                 return ResourceManager.GetString("RuaEObrigatorio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 13.
+        /// </summary>
+        public static string ValorInicialEObrigatorio {
+            get {
+                return ResourceManager.GetString("ValorInicialEObrigatorio", resourceCulture);
             }
         }
     }

@@ -142,7 +142,7 @@
     <value>A cidade é obrigatório.</value>
   </data>
   <data name="EstadoEObrigatorio" xml:space="preserve">
-    <value>O estado é obrigatorio.</value>
+    <value>O estado é obrigatório.</value>
   </data>
   <data name="NumeroEObrigatorio" xml:space="preserve">
     <value>O numero é obrigatório.</value>
@@ -152,5 +152,14 @@
   </data>
   <data name="ErroSistematico" xml:space="preserve">
     <value>Tente mais tarde, o servidor está indisponivel</value>
+  </data>
+  <data name="ValorInicialEObrigatorio" xml:space="preserve">
+    <value>O valor inicial é obrigatório</value>
+  </data>
+  <data name="FuncionarioIdEObrigatorio" xml:space="preserve">
+    <value>O funcionário id é obrigatório.</value>
+  </data>
+  <data name="JaExisteCaixaAberto" xml:space="preserve">
+    <value>Já existe um caixa em aberto, fecha ele antes para abri um novo.</value>
   </data>
 </root>
