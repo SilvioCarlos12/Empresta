@@ -26,7 +26,8 @@ public sealed class AbrirCaixaHandler(
             }
 
             var existeEmAberto =
-                await caixaRepositorio.GetByFilter(x => x.StatusCaixa == StatusCaixa.Aberto, cancellationToken);
+                await caixaRepositorio.GetByFilter(x => x.StatusCaixa == StatusCaixa.Aberto && 
+                                                        x.FuncionarioId == request.FuncionarioId, cancellationToken);
 
             if (existeEmAberto.Count != 0)
             {
