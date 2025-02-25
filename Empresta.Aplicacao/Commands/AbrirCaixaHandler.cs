@@ -1,8 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using Empresta.Aplicacao.Dto;
 using Empresta.Aplicacao.MensagemErros;
-using Empresta.Dominio;
-using Empresta.Dominio.Enums;
 using Empresta.Infraestrutura.Repositorios.Interfaces;
 using FluentValidation;
 using MediatR;
@@ -10,8 +8,7 @@ using MediatR;
 namespace Empresta.Aplicacao.Commands;
 
 public sealed class AbrirCaixaHandler(
-    IFuncionarioRepositorio funcionarioRepositorio,
-    ICaixaRepositorio caixaRepositorio)
+    IFuncionarioRepositorio funcionarioRepositorio)
     : IRequestHandler<AbrirCaixaCommand, AbrirCaixaResponse>
 {
     public async Task<AbrirCaixaResponse> Handle(AbrirCaixaCommand request, CancellationToken cancellationToken)
@@ -25,19 +22,16 @@ public sealed class AbrirCaixaHandler(
                 return AbrirCaixaResponse.NaoEncontrado();
             }
 
-            var existeEmAberto =
-                await caixaRepositorio.GetByFilter(x => x.StatusCaixa == StatusCaixa.Aberto && 
-                                                        x.FuncionarioId == request.FuncionarioId, cancellationToken);
 
-            if (existeEmAberto.Count != 0)
+            if (funcionario.ExisteCaixaAberto())
             {
                 return AbrirCaixaResponse.Invalido(new ErroDto(CodigosErros.JaExisteCaixaEmAberto,
                     MensagensErro.JaExisteCaixaAberto));
             }
-            
-            var caixa = Caixa.AbrirCaixa(request.ValorInicial, request.FuncionarioId);
 
-            await caixaRepositorio.Add(caixa,cancellationToken);
+            funcionario.AbrirOCaixa(request.ValorInicial);
+
+            await funcionarioRepositorio.Update(funcionario, cancellationToken);
 
             return AbrirCaixaResponse.Sucesso();
         }
@@ -50,19 +44,22 @@ public sealed class AbrirCaixaHandler(
 
 public sealed record AbrirCaixaCommand(decimal ValorInicial) : IRequest<AbrirCaixaResponse>
 {
-    [JsonIgnore]
-    public Guid FuncionarioId { get; set; }
+    [JsonIgnore] public Guid FuncionarioId { get; set; }
 }
 
 public sealed record AbrirCaixaSucesso() : AbrirCaixaResponse;
+
 public sealed record AbrirCaixaNaoEncontrado() : AbrirCaixaResponse;
+
 public sealed record AbrirCaixaInvalido(ErroDto ErroDto) : AbrirCaixaResponse;
+
 public sealed record AbrirCaixaErro(ErroDto ErroDto) : AbrirCaixaResponse;
+
 public record AbrirCaixaResponse
 {
     public static AbrirCaixaResponse Sucesso() => new AbrirCaixaSucesso();
     public static AbrirCaixaResponse NaoEncontrado() => new AbrirCaixaNaoEncontrado();
-    public static AbrirCaixaResponse Invalido(ErroDto erro) => new AbrirCaixaInvalido(erro); 
+    public static AbrirCaixaResponse Invalido(ErroDto erro) => new AbrirCaixaInvalido(erro);
     public static AbrirCaixaResponse Erro(ErroDto erro) => new AbrirCaixaErro(erro);
 }
 
