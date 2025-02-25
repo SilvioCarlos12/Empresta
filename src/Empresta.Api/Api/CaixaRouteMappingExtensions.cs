@@ -10,13 +10,15 @@ public static class CaixaRouteMappingExtensions
 {
     private const string Caixa = "caixa";
     private const string WithTags = "Caixa";
+
     public static WebApplication MapCaixa(this WebApplication app, string rotaRaiz) =>
-         app.MapAbrirCaixa(rotaRaiz)
+        app.MapAbrirCaixa(rotaRaiz)
             .MapFecharCaixa(rotaRaiz);
-    
-    private static WebApplication MapAbrirCaixa(this WebApplication app, string rotaRaiz)  {
+
+    private static WebApplication MapAbrirCaixa(this WebApplication app, string rotaRaiz)
+    {
         app.MapPost($"{rotaRaiz}/{{id}}/{Caixa}", async ([FromServices] IMediator mediator,
-                AbrirCaixaCommand cmd,Guid id ,CancellationToken cancellationToken) =>
+                AbrirCaixaCommand cmd, Guid id, CancellationToken cancellationToken) =>
             {
                 cmd.FuncionarioId = id;
                 var response = await mediator.Send(cmd, cancellationToken);
@@ -38,13 +40,14 @@ public static class CaixaRouteMappingExtensions
 
         return app;
     }
-    
-    private static WebApplication MapFecharCaixa(this WebApplication app, string rotaRaiz)  {
+
+    private static WebApplication MapFecharCaixa(this WebApplication app, string rotaRaiz)
+    {
         app.MapPatch($"{rotaRaiz}/{{id}}/{Caixa}", async ([FromServices] IMediator mediator,
-              Guid id ,CancellationToken cancellationToken) =>
+                Guid id, CancellationToken cancellationToken) =>
             {
                 FecharCaixaCommand cmd = new FecharCaixaCommand(id);
-                
+
                 var response = await mediator.Send(cmd, cancellationToken);
                 return response switch
                 {
@@ -64,5 +67,4 @@ public static class CaixaRouteMappingExtensions
 
         return app;
     }
-    
 }
