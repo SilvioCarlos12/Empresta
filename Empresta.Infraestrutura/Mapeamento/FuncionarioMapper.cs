@@ -14,6 +14,7 @@ public static class FuncionarioMapper
                 cm.AutoMap();
                 cm.SetIgnoreExtraElements(true);
                 cm.MapMember(p => p.Clientes).SetElementName("Clientes");
+                cm.MapMember(c => c.Caixas).SetElementName("Caixas");
             });
         }
     }

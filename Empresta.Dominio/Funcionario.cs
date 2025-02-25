@@ -18,12 +18,18 @@ namespace Empresta.Dominio
 
         public bool ExisteCaixaAberto()
         {
-            return Caixas.Exists(x => x.EstarAberto());
+            return Caixas is not null && Caixas.Exists(x => x.EstarAberto());
         }
 
         public void AbrirOCaixa(decimal valorInicial)
         {
             var caixa = Caixa.AbrirCaixa(valorInicial);
+            
+            if (Caixas is null)
+            {
+                Caixas = [];
+            }
+            
             Caixas.Add(caixa);
         }
 
@@ -62,7 +68,7 @@ namespace Empresta.Dominio
 
         public static Funcionario Criar(string nome, Telefone telefone, Endereco endereco)
         {
-            return new Funcionario(nome, telefone, endereco);
+            return new Funcionario(nome, telefone, endereco);;
         }
     }
 }

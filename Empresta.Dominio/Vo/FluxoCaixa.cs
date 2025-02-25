@@ -2,7 +2,7 @@
 
 namespace Empresta.Dominio.Vo;
 
-public record struct FluxoCaixa
+public record struct  FluxoCaixa
 {
     public decimal Valor { get; set; }
     public TipoDespesa TipoDespesa { get; set; }

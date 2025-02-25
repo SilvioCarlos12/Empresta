@@ -3,14 +3,13 @@ using Empresta.Dominio.Vo;
 
 namespace Empresta.Dominio;
 
-public sealed class Caixa
+public record struct Caixa
 {
-    public Guid Id { get;  set; } = Guid.NewGuid();
     public StatusCaixa StatusCaixa { get; private set; }
     public DateTime DataAbertura { get; private set; }
     public DateTime? DataFechamento { get; private set; }
     public decimal ValorInicial { get; private set; }
-    public List<FluxoCaixa> FluxoCaixas { get; private set; } = new List<FluxoCaixa>();
+    public List<FluxoCaixa> FluxoCaixas { get; private set; } = [];
 
     public bool EstarAberto()
     {
