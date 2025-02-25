@@ -21,8 +21,7 @@ public sealed class AbrirCaixaHandler(
             {
                 return AbrirCaixaResponse.NaoEncontrado();
             }
-
-
+            
             if (funcionario.ExisteCaixaAberto())
             {
                 return AbrirCaixaResponse.Invalido(new ErroDto(CodigosErros.JaExisteCaixaEmAberto,
